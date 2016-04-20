@@ -1,0 +1,41 @@
+/**
+ * Author Rigoberto Leander Salgado Reyes <rlsalgado2006@gmail.com>
+ * <p>
+ * Copyright 2016 by Rigoberto Leander Salgado Reyes.
+ * <p>
+ * This program is licensed to you under the terms of version 3 of the
+ * GNU Affero General Public License. This program is distributed WITHOUT
+ * ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+ * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+ * AGPL (http:www.gnu.org/licenses/agpl-3.0.txt) for more details.
+ */
+
+group 'org.scrapping'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+//    mavenCentral()
+    maven { url = 'http://maven.prod.uci.cu/nexus/content/groups/public/' }
+    maven { url = 'http://maven.prod.uci.cu/nexus/content/repositories/' }
+    maven { url = 'http://maven.prod.uci.cu/nexus/content/repositories/clojars.org/' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.eclipse.persistence:eclipselink:2.5.2'
+    compile 'org.eclipse.persistence:javax.persistence:2.1.0'
+    compile 'org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.5.2'
+    compile 'org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen:2.5.0-M6'
+    compile 'org.eclipse.persistence:org.eclipse.persistence.jpa.modelgen.processor:2.5.2'
+    compile 'org.xerial:sqlite-jdbc:3.8.11.2'
+    compile 'net.sourceforge.htmlunit:htmlunit:2.19'
+}
+
+task run(type: JavaExec) {
+    main = "org.scrapping.HtmlUnitScrap"
+    classpath = sourceSets.main.runtimeClasspath
+}
